@@ -1,51 +1,53 @@
-# PC soll auffordern Schere, Stein oder Papier zu wählen. 
-# Wenn gewählt, soll PC selbst zufälligt wählen, die Ergebnisse vergleichen (Stein schlägt Schere; Schere schlägt Papier, Papier schlägt Stein)
+# PC soll auffordern Löwenzahn, Asphalt oder Fahrrad zu wählen. 
+# Wenn gewählt, soll PC selbst zufälligt wählen, die Ergebnisse vergleichen (Asphalt schlägt Löwenzahn; Löwenzahn schlägt Fahrrad, Fahrrad schlägt Asphalt)
 # PC soll Sieger*in bestimmen und ausgeben. Außerdem Punktestand speichern und neu abfragen
 
 import random
 
 
-print("Willkommen zum Spiel 'Schere, Stein, Papier'")
+print("Willkommen beim Schneckenrennen! Wähle Löwenzahn, Asphalt oder Fahrrad um deine Schnecke zu bewegen!")
 Endergebnis = 0
 while True:
 
-    wahl = input("was möchtest du wählen? Schere, Stein oder Papier?\n")
+    wahl = input("was möchtest du wählen? Löwenzahn, Asphalt oder Fahrrad?\n")
 
-    valide_eingaben = ["Schere", "Stein", "Papier"]
+    valide_eingaben = ["Löwenzahn", "Asphalt", "Fahrrad", "Schneckenschleim"]
+    valide_eingaben_pc = ["Löwenzahn", "Asphalt", "Fahrrad"]
 
     valide = False
     while valide is False:
         if wahl in valide_eingaben:
             valide = True
         else:
-            wahl = input("Das nicht gut!1! Mach nochmal!\n")
+            wahl = input("Du doofes Schnecksche, mach nochmal!\n")
 
     print("du hast "+ wahl + " ausgewählt")
-    pcwahl = random.choice(valide_eingaben)
+    pcwahl = random.choice(valide_eingaben_pc)
     print("Computer wählt " + pcwahl)
 
     if wahl == pcwahl :
         Ergebnis = 0
-    if wahl == "Stein" and pcwahl == "Schere": 
-        Ergebnis = 1
-    if wahl == "Papier" and pcwahl == "Schere":
+    if wahl == "Asphalt" and pcwahl == "Löwenzahn": 
         Ergebnis = -1
-    if wahl == "Stein" and pcwahl == "Papier":
-        Ergebnis = -1
-    if wahl == "Schere" and pcwahl == "Stein":
-        Ergebnis = -1
-    if wahl == "Schere" and pcwahl == "Papier":
+    if wahl == "Fahrrad" and pcwahl == "Löwenzahn":
         Ergebnis = 1
-    if wahl == "Papier" and pcwahl == "Stein":
+    if wahl == "Asphalt" and pcwahl == "Fahrrad":
+        Ergebnis = -1
+    if wahl == "Löwenzahn" and pcwahl == "Asphalt":
         Ergebnis = 1
+    if wahl == "Löwenzahn" and pcwahl == "Fahrrad":
+        Ergebnis = -1
+    if wahl == "Fahrrad" and pcwahl == "Asphalt":
+        Ergebnis = 1
+    if wahl == "Schneckenschleim":
+        Ergebnis = 0.5
 
     if Ergebnis > 0: 
-        print("du hast gewonnen")
+        print("flottes Schneckchen!")
     if Ergebnis < 0:
-        print("du Loser")
+        print("falsche Richtung!")
     if Ergebnis == 0:
-        print("unentschieden")
+        print("Lahme Schnecke!")
         
-    print(Ergebnis)
     Endergebnis += Ergebnis
-    print("Der Zwischenstand beträgt " + str(Endergebnis))
+    print("Deine Schnecke ist " + str(Endergebnis) + "cm vor der Computerschnecke")
